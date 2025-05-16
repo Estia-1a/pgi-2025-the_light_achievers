@@ -7,5 +7,6 @@ void dimension(const char*);
 void first_pixel(char*);
 void tenth_pixel(char *);
 void second_line(char*);
+void print_pixel(char *, int, int);
 
 #endif

@@ -18,9 +18,9 @@ void helloWorld() {
 
 void dimension(const char* source_path) {    
     unsigned char* data = NULL;
-    int width = 0, height = 0, channels = 0;
+    int width = 0, height = 0, n = 0;
 
-    read_image_data(source_path, &data, &width, &height, &channels);
+    read_image_data(source_path, &data, &width, &height, &n);
 
     printf("dimension : %d, %d \n", width, height);
 
@@ -29,9 +29,9 @@ void dimension(const char* source_path) {
 
 void first_pixel(char *source_path) {
     unsigned char* data = NULL;
-    int width = 0, height = 0, channels = 0;
+    int width = 0, height = 0, n = 0;
 
-    read_image_data(source_path, &data, &width, &height, &channels);
+    read_image_data(source_path, &data, &width, &height, &n);
 
     printf("first_pixel: %d %d %d",data[0],data[1],data[2] );
 
@@ -40,9 +40,9 @@ void first_pixel(char *source_path) {
 
 void tenth_pixel(char *source_path) {
     unsigned char* data = NULL;
-    int width = 0, height = 0, channels = 0;
+    int width = 0, height = 0, n = 0;
 
-    read_image_data(source_path, &data, &width, &height, &channels);
+    read_image_data(source_path, &data, &width, &height, &n);
 
     printf("tenth_pixel: %d %d %d",data[27],data[28],data[29] );
 
@@ -51,13 +51,27 @@ void tenth_pixel(char *source_path) {
 
 void second_line(char *source_path) {
     unsigned char* data = NULL;
-    int width = 0, height = 0, channels = 0;
+    int width = 0, height = 0, n = 0;
 
-    read_image_data(source_path, &data, &width, &height, &channels);
+    read_image_data(source_path, &data, &width, &height, &n);
 
-    int index = width*channels ;
+    int index = width*n ;
 
     printf("second_line: %d %d %d", data[index], data[index+1], data[index+2]);
 
     free_image_data(data);
 }
+
+void print_pixel(char *source_path, int x, int y){
+    unsigned char* data = NULL;
+    int width = 0, height = 0, n = 0;
+
+    read_image_data(source_path, &data, &width, &height, &n);
+
+    int index = (y*width + x)*n ;
+
+    printf("print_pixel (%d, %d): %d %d %d", x, y, data[index], data[index+1], data[index+2]);
+
+    free_image_data(data);
+}
+
