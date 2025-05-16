@@ -16,9 +16,7 @@ void helloWorld() {
     printf("Hello World !");
 }
 
-void dimension(const char* source_path) {
-    printf("Hello dimensions %s\n", source_path);
-    
+void dimension(const char* source_path) {    
     unsigned char* data = NULL;
     int width = 0, height = 0, channels = 0;
 
@@ -27,4 +25,13 @@ void dimension(const char* source_path) {
     printf("dimension : %d, %d \n", width, height);
 
     free_image_data(data);
+}
+
+void first_pixel(char *source_path) {
+    unsigned char* data = NULL;
+    int width = 0, height = 0, channels = 0;
+
+    read_image_data(source_path, &data, &width, &height, &channels);
+
+    printf("first_pixel: %d %d %d",data[0],data[1],data[2] );
 }
