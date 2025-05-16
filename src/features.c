@@ -1,5 +1,6 @@
 #include <estia-image.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "features.h"
 #include "utils.h"
@@ -13,4 +14,17 @@
 
 void helloWorld() {
     printf("Hello World !");
+}
+
+void dimension(const char* source_path) {
+    printf("Hello dimensions %s\n", source_path);
+    
+    unsigned char* data = NULL;
+    int width = 0, height = 0, channels = 0;
+
+    read_image_data(source_path, &data, &width, &height, &channels);
+
+    printf("dimension : %d, %d \n", width, height);
+
+    free_image_data(data);
 }
