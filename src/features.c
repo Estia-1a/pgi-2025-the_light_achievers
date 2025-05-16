@@ -62,7 +62,7 @@ void second_line(char *source_path) {
     free_image_data(data);
 }
 
-void print_pixel(char *source_path, int x, int y){
+void print_pixel1(char *source_path, int x, int y){
     unsigned char* data = NULL;
     int width = 0, height = 0, n = 0;
 
@@ -73,5 +73,16 @@ void print_pixel(char *source_path, int x, int y){
     printf("print_pixel (%d, %d): %d %d %d", x, y, data[index], data[index+1], data[index+2]);
 
     free_image_data(data);
+}
+
+void print_pixel2(char *source_path, int x, int y){
+    unsigned char* data = NULL;
+    int width = 0, height = 0, n = 0;
+
+    read_image_data(source_path, &data, &width, &height, &n);
+
+    pixelRGB* pixel = get_pixel(data, width, height, n, x, y);
+
+    printf("print_pixel (%d, %d): %d %d %d", x, y, pixel->R, pixel->G, pixel->B);
 }
 

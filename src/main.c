@@ -44,13 +44,14 @@ int main(int argc, char **argv) {
     /* second_line() function is defined in feature.h and implemented in feature.c */
     second_line(configuration.filenames[0]);
   }
-  else if ( strncmp( configuration.command, "print_pixel", 11 ) == 0 ) {
-    /* print_pixel() function is defined in feature.h and implemented in feature.c */
-    print_pixel(configuration.filenames[0], 45, 500);
+  else if ( strncmp( configuration.command, "print_pixel1", 11 ) == 0 ) {
+    /* print_pixel1() function is defined in feature.h and implemented in feature.c */
+    print_pixel1(configuration.filenames[0], 45, 500);
   }
-  /*
-   * TO COMPLETE
-   */
-  
+  else if ( strncmp( configuration.command, "print_pixel2", 11 ) == 0 ) {
+    /* print_pixel2() function is defined in feature.h and implemented in feature.c */
+    print_pixel2(configuration.filenames[0], 45, 500);
+  }
+
   return 0;
 }
