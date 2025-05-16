@@ -4,9 +4,9 @@
         "args": [
             "--debug",
             "-f",
-            "images/input/image.jpeg",
+            "images/input/antoher_image.bmp",
             "-c",
-            "helloworld"
+            "dimension"
         ],
         "cwd": "${workspaceFolder}"
     },
