@@ -359,3 +359,8 @@ void mirror_vertical(char *input_path) {
     free_image_data(data);
     free_image_data(mirrored_data);
 }
+
+void mirror_total(char *source_input){
+    mirror_horizontal(source_input);
+    mirror_vertical("image_out.bmp");
+}
