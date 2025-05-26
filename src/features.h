@@ -16,4 +16,5 @@ void gray_pixel(char*);
 void invert_pixel(char*);
 void color_gray_luminance(char*);
 void rotate_cw(char*);
+void rotate_acw(char*);
 #endif

@@ -98,6 +98,11 @@ int main(int argc, char **argv) {
     /* rotate_cw() function is defined in feature.h and implemented in feature.c */
     rotate_cw(configuration.filenames[0]);
   }
+
+  else if ( strncmp( configuration.command, "rotate_acw", 11 ) == 0 ) {
+    /* rotate_acw() function is defined in feature.h and implemented in feature.c */
+    rotate_acw(configuration.filenames[0]);
+  }
    
   return 0;
 }
