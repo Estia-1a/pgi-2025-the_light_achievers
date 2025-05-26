@@ -21,4 +21,5 @@ void rotate_acw(char*);
 void mirror_horizontal(char*);
 void mirror_vertical(char *);
 void mirror_total(char *);
+void color_desaturate(char *);
 #endif
