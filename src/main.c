@@ -67,5 +67,9 @@ int main(int argc, char **argv) {
     /* green_pixel() function is defined in feature.h and implemented in feature.c */
     green_pixel(configuration.filenames[0]);
   }
+  else if ( strncmp( configuration.command, "blue_pixel", 11 ) == 0 ) {
+    /* blue_pixel() function is defined in feature.h and implemented in feature.c */
+    blue_pixel(configuration.filenames[0]);
+  }
   return 0;
 }
