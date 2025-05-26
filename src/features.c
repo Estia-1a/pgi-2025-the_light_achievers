@@ -141,6 +141,23 @@ void blue_pixel(char *input_path) {
         data[i + 1] = 0;      
     }
  
-    write_image_data("image_outt.bmp", data, width, height);
+    write_image_data("image_out.bmp", data, width, height);
+    free_image_data(data);    
+}
+
+void red_pixel(char *input_path) {
+    unsigned char *data = NULL;
+    int width = 0, height = 0, n = 0;
+   
+    read_image_data(input_path, &data, &width, &height, &n);
+ 
+    int size = width * height * n;
+ 
+    for (int i = 0; i < size; i += n) {
+        data[i+1] = 0;      
+        data[i+2] = 0;      
+    }
+ 
+    write_image_data("image_out.bmp", data, width, height);
     free_image_data(data);    
 }
