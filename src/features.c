@@ -139,7 +139,7 @@ void min_pixel(char *source_path) {
     free_image_data(data);
 }
 
-void green_pixel(char *input_path) {
+void color_green(char *input_path) {
     unsigned char *data = NULL;
     int width = 0, height = 0, n = 0;
    
@@ -156,7 +156,7 @@ void green_pixel(char *input_path) {
     free_image_data(data);    
 }
 
-void blue_pixel(char *input_path) {
+void color_blue(char *input_path) {
     unsigned char *data = NULL;
     int width = 0, height = 0, n = 0;
    
@@ -173,7 +173,7 @@ void blue_pixel(char *input_path) {
     free_image_data(data);    
 }
 
-void red_pixel(char *input_path) {
+void color_red(char *input_path) {
     unsigned char *data = NULL;
     int width = 0, height = 0, n = 0;
    
@@ -190,7 +190,7 @@ void red_pixel(char *input_path) {
     free_image_data(data);    
 }
 
-void gray_pixel(char *input_path) {
+void color_gray(char *input_path) {
     unsigned char *data = NULL;
     int width = 0, height = 0, n = 0;
     int gray;
@@ -332,6 +332,7 @@ void mirror_horizontal(char *input_path) {
     free_image_data(data);
     free_image_data(mirrored_data);
 }
+
 void mirror_vertical(char *input_path) {
     char *data = NULL;
     int width = 0, height = 0, n = 0;
