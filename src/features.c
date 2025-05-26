@@ -62,55 +62,51 @@ void second_line(char *source_path) {
     free_image_data(data);
 }
 
-void print_pixel1(char *source_path, int x, int y){
+void print_pixel(char *source_path, int x, int y){
     unsigned char* data = NULL;
     int width = 0, height = 0, n = 0;
+    pixelRGB* pixel;
 
     read_image_data(source_path, &data, &width, &height, &n);
 
-    int index = (y*width + x)*n ;
+    pixel = get_pixel(data, width, height, n, x, y);
 
-    printf("print_pixel (%d, %d): %d %d %d", x, y, data[index], data[index+1], data[index+2]);
-
+    if(pixel != NULL){
+        printf("print_pixel (%d, %d): %d %d %d", x, y, pixel->R, pixel->G, pixel->B);
+    }
     free_image_data(data);
-}
-
-void print_pixel2(char *source_path, int x, int y){
-    unsigned char* data = NULL;
-    int width = 0, height = 0, n = 0;
-
-    read_image_data(source_path, &data, &width, &height, &n);
-
-    pixelRGB* pixel = get_pixel(data, width, height, n, x, y);
-
-    printf("print_pixel (%d, %d): %d %d %d", x, y, pixel->R, pixel->G, pixel->B);
 }
 
 void max_pixel(char *source_path) {
     unsigned char *data = NULL;
-    int width = 0, height = 0, channels = 0;
+    int width = 0, height = 0, n = 0;
  
-    read_image_data(source_path, &data, &width, &height, &channels);
-    int x, y, r, g, b, somme, index;
-    int max_x = 0, max_y = 0, max_r = 0, max_g = 0, max_b = 0, max_somme = 0;
+    read_image_data(source_path, &data, &width, &height, &n);
  
-    for ( y = 0; y < height; y++) {
-        for ( x = 0; x < width; x++) {
-            index = (y * width + x) * channels;
-            r = data[index];
-            g = data[index + 1];
-            b = data[index + 2];
-            somme = r + g + b;
-            if (somme > max_somme) {
-                max_somme = somme;
-                max_x = x;
-                max_y = y;
-                max_r = r;
-                max_g = g;
-                max_b = b;
-            }
+    int i;
+    int r_max, g_max, b_max, x_max, y_max, somme;
+    int max = -1;
+    
+
+    for(i = 0; i<width*height*n; i += n){
+        int pixelNum = i / n;  
+        int x = pixelNum % width;
+        int y = pixelNum / width;
+
+     
+        pixelRGB* pixel = get_pixel(data, width, height, n, x, y);
+
+        somme = pixel->R + pixel->G + pixel->B;
+        if (somme > max){
+            max = somme;
+            r_max = pixel->R;
+            g_max = pixel->G;
+            b_max = pixel->B;
+            x_max = x;
+            y_max = y;
         }
     }
-    printf("max_pixel (%d, %d): %d, %d, %d\n", max_x, max_y, max_r, max_g, max_b);
+ 
+    printf("max_pixel (%d, %d): %d, %d, %d\n", x_max, y_max, r_max, g_max, b_max);
     free_image_data(data);
 }
