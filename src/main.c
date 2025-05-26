@@ -63,18 +63,26 @@ int main(int argc, char **argv) {
     /* max_pixel() function is defined in feature.h and implemented in feature.c */
     max_pixel(configuration.filenames[0]);
   }
+
   else if ( strncmp( configuration.command, "green_pixel", 11 ) == 0 ) {
     /* green_pixel() function is defined in feature.h and implemented in feature.c */
     green_pixel(configuration.filenames[0]);
   }
+
   else if ( strncmp( configuration.command, "blue_pixel", 11 ) == 0 ) {
     /* blue_pixel() function is defined in feature.h and implemented in feature.c */
     blue_pixel(configuration.filenames[0]);
   }
+
   else if ( strncmp( configuration.command, "red_pixel", 11 ) == 0 ) {
     /* red_pixel() function is defined in feature.h and implemented in feature.c */
     red_pixel(configuration.filenames[0]);
   }
-  
+
+  else if ( strncmp( configuration.command, "gray_pixel", 11 ) == 0 ) {
+    /* gray_pixel() function is defined in feature.h and implemented in feature.c */
+    gray_pixel(configuration.filenames[0]);
+  }
+   
   return 0;
 }

@@ -161,3 +161,23 @@ void red_pixel(char *input_path) {
     write_image_data("image_out.bmp", data, width, height);
     free_image_data(data);    
 }
+
+void gray_pixel(char *input_path) {
+    unsigned char *data = NULL;
+    int width = 0, height = 0, n = 0;
+    int gray;
+   
+    read_image_data(input_path, &data, &width, &height, &n);
+ 
+    int size = width * height * n;
+ 
+    for (int i = 0; i < size; i += n) {
+        gray = (data[i] + data[i+1] + data[i+2]) / 3;
+        data[i] = gray;      
+        data[i + 1] = gray; 
+        data[i + 2] = gray;      
+    }
+ 
+    write_image_data("image_out.bmp", data, width, height);
+    free_image_data(data);    
+}
