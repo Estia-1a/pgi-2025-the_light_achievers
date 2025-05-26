@@ -13,4 +13,5 @@ void green_pixel(char*);
 void blue_pixel(char*);
 void red_pixel(char*);
 void gray_pixel(char*);
+void invert_pixel(char*);
 #endif

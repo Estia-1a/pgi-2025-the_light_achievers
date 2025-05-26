@@ -83,6 +83,11 @@ int main(int argc, char **argv) {
     /* gray_pixel() function is defined in feature.h and implemented in feature.c */
     gray_pixel(configuration.filenames[0]);
   }
+
+  else if ( strncmp( configuration.command, "invert_pixel", 11 ) == 0 ) {
+    /* invert_pixel() function is defined in feature.h and implemented in feature.c */
+    invert_pixel(configuration.filenames[0]);
+  }
    
   return 0;
 }
