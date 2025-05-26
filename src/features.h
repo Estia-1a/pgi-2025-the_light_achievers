@@ -9,4 +9,5 @@ void tenth_pixel(char *);
 void second_line(char*);
 void print_pixel(char *, int, int);
 void max_pixel(char *);
+void green_pixel(char*);
 #endif

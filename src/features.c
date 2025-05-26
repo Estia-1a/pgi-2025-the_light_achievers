@@ -110,3 +110,20 @@ void max_pixel(char *source_path) {
     printf("max_pixel (%d, %d): %d, %d, %d\n", x_max, y_max, r_max, g_max, b_max);
     free_image_data(data);
 }
+     
+void green_pixel(char *input_path) {
+    unsigned char *data = NULL;
+    int width = 0, height = 0, n = 0;
+   
+    read_image_data(input_path, &data, &width, &height, &n);
+ 
+    int size = width * height * n;
+ 
+    for (int i = 0; i < size; i += n) {
+        data[i] = 0;      
+        data[i + 2] = 0;      
+    }
+ 
+    write_image_data("image_out.bmp", data, width, height);
+    free_image_data(data);    
+}
