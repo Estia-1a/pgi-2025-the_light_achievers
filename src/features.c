@@ -104,12 +104,41 @@ void max_pixel(char *source_path) {
     }
  
     printf("max_pixel (%d,%d) : %d, %d, %d\n", max_x, max_y, max_r, max_g, max_b);
- 
- 
-    //printf("max_pixel (%d, %d): %d, %d, %d\n", x_max, y_max, r_max, g_max, b_max);
+
     free_image_data(data);
 }
-     
+
+void min_pixel(char *source_path) {
+    unsigned char *data = NULL;
+    int width = 0, height = 0, n = 0;
+ 
+    if (read_image_data(source_path, &data, &width, &height, &n) == 0) {
+        printf("Error with %s\n", source_path);
+        return;
+    }
+   
+    int min = 256*3+1, min_x = 0, min_y = 0, min_r = 0, min_g = 0, min_b = 0;
+ 
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            pixelRGB* pixel = get_pixel(data, width, height, n, x, y);
+            int sum = pixel->R + pixel->G + pixel->B;
+            if (sum < min) {
+                min = sum;
+                min_x = x;
+                min_y = y;
+                min_r = pixel->R;
+                min_g = pixel->G;
+                min_b = pixel->B;
+            }
+        }
+    }
+ 
+    printf("min_pixel (%d,%d) : %d, %d, %d\n", min_x, min_y, min_r, min_g, min_b);
+   
+    free_image_data(data);
+}
+
 void green_pixel(char *input_path) {
     unsigned char *data = NULL;
     int width = 0, height = 0, n = 0;
