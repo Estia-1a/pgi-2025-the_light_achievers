@@ -278,3 +278,28 @@ void rotate_acw(char *input_path) {
     free_image_data(data);
     free_image_data(rotated_data);
 }
+
+void mirror_horizontal(char *input_path) {
+    char *data = NULL;
+    int width = 0, height = 0, n = 0;
+
+    read_image_data(input_path, &data, &width, &height, &n);
+
+    int size = width * height * n;
+    char *mirrored_data = malloc(size);
+
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            int index = (y * width + x) * n;
+            int mir_index = (y * width + (width - 1 - x)) * n;
+
+            for (int i = 0; i < n; i++) {
+                mirrored_data[mir_index + i] = data[index + i];
+            }
+        }
+    }
+
+    write_image_data("image_out.bmp", mirrored_data, width, height);
+    free_image_data(data);
+    free_image_data(mirrored_data);
+}
