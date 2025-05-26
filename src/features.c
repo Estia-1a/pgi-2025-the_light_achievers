@@ -199,3 +199,23 @@ void invert_pixel(char *input_path) {
     write_image_data("image_out.bmp", data, width, height);
     free_image_data(data);    
 }
+
+void color_gray_luminance(char *input_path) {
+    unsigned char *data = NULL;
+    int width = 0, height = 0, n = 0;
+    int gray;
+   
+    read_image_data(input_path, &data, &width, &height, &n);
+ 
+    int size = width * height * n;
+ 
+    for (int i = 0; i < size; i += n) {
+        gray = (data[i]*0.21 + data[i+1]*0.72 + data[i+2]*0.07);
+        data[i] = gray;      
+        data[i + 1] = gray; 
+        data[i + 2] = gray;      
+    }
+ 
+    write_image_data("image_out.bmp", data, width, height);
+    free_image_data(data);    
+}
