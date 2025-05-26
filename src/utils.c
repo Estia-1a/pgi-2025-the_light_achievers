@@ -9,23 +9,17 @@
  * 
  */
 
- pixelRGB* get_pixel( unsigned char* data, const unsigned int width, const unsigned int height, const unsigned int n, const unsigned int x, const unsigned int y ){
+pixelRGB* get_pixel( unsigned char* data, const unsigned int width, const unsigned int height, const unsigned int n, const unsigned int x, const unsigned int y ){
 
    if(data == NULL){
       return NULL;
    }
 
-   if(x>=width || y>=height){
+   else if(x>=width || y>=height){
       return NULL;
    }
 
    else{
-      pixelRGB* pixel = malloc(sizeof(pixelRGB)) ;
-      
-      pixel->R = data[(y * width + x) * n] ;
-      pixel->G = data[(y * width + x) * n+ 1] ;
-      pixel->B =data[(y * width + x) * n + 2] ;
-   
-      return pixel;
+      return (pixelRGB *) &data[(y * width + x) * n];
    }
  }
