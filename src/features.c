@@ -81,33 +81,32 @@ void max_pixel(char *source_path) {
     unsigned char *data = NULL;
     int width = 0, height = 0, n = 0;
  
-    read_image_data(source_path, &data, &width, &height, &n);
+    if (read_image_data(source_path, &data, &width, &height, &n) == 0) {
+        printf("Error with %s\n", source_path);
+        return;
+    }
+   
+    int max = -1, max_x = -1, max_y = -1, max_r = -1, max_g = -1, max_b = -1;
  
-    int i;
-    int r_max, g_max, b_max, x_max, y_max, somme;
-    int max = -1;
-    
-
-    for(i = 0; i<width*height*n; i += n){
-        int pixelNum = i / n;  
-        int x = pixelNum % width;
-        int y = pixelNum / width;
-
-     
-        pixelRGB* pixel = get_pixel(data, width, height, n, x, y);
-
-        somme = pixel->R + pixel->G + pixel->B;
-        if (somme > max){
-            max = somme;
-            r_max = pixel->R;
-            g_max = pixel->G;
-            b_max = pixel->B;
-            x_max = x;
-            y_max = y;
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            pixelRGB* pixel = get_pixel(data, width, height, n, x, y);
+            int sum = pixel->R + pixel->G + pixel->B;
+            if (sum > max) {
+                max = sum;
+                max_x = x;
+                max_y = y;
+                max_r = pixel->R;
+                max_g = pixel->G;
+                max_b = pixel->B;
+            }
         }
     }
  
-    printf("max_pixel (%d, %d): %d, %d, %d\n", x_max, y_max, r_max, g_max, b_max);
+    printf("max_pixel (%d,%d) : %d, %d, %d\n", max_x, max_y, max_r, max_g, max_b);
+ 
+ 
+    //printf("max_pixel (%d, %d): %d, %d, %d\n", x_max, y_max, r_max, g_max, b_max);
     free_image_data(data);
 }
      
