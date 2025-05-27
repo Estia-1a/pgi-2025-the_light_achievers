@@ -139,6 +139,47 @@ void min_pixel(char *source_path) {
     free_image_data(data);
 }
 
+void max_component(char *source_path, char component) {
+    unsigned char *data = NULL;
+    int width = 0, height = 0, n = 0;
+ 
+    if (read_image_data(source_path, &data, &width, &height, &n) == 0) {
+        printf("Error with %s\n", source_path);
+        return;
+    }
+   
+    int max = -1, max_x = -1, max_y = -1, max_r = -1, max_g = -1, max_b = -1, max_value = -1;
+ 
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            pixelRGB* pixel = get_pixel(data, width, height, n, x, y);
+            int value = 0;
+
+            if (component == 'R') {
+                value = pixel->R;
+            } else if (component == 'G') {
+                value = pixel->G;
+            } else if (component == 'B') {
+                value = pixel->B;
+            } else {
+                printf("Invalid component: %c. Use R, G or B.\n", component);
+                free_image_data(data);
+                return;
+            }
+
+            if (value > max_value) {
+                max_value = value;
+                max_x = x;
+                max_y = y;
+            }
+        }
+    }
+
+    printf("max_component %c (%d,%d): %d\n", component, max_x, max_y, max_value);
+
+    free_image_data(data);
+}
+
 void color_green(char *input_path) {
     unsigned char *data = NULL;
     int width = 0, height = 0, n = 0;
