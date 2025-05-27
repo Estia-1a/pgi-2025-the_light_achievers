@@ -11,6 +11,7 @@ void print_pixel(char *, int, int);
 void max_pixel(char *);
 void min_pixel(char *);
 void max_component(char *, char);
+void min_component(char *, char);
 void color_green(char*);
 void color_blue(char*);
 void color_red(char*);
