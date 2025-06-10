@@ -1,0 +1,37 @@
+/home/runner/work/pgi-2025-the_light_achievers/pgi-2025-the_light_achievers/src/features.c: In function ‘rotate_cw’:
+/home/runner/work/pgi-2025-the_light_achievers/pgi-2025-the_light_achievers/src/features.c:338:33: warning: passing argument 2 of ‘read_image_data’ from incompatible pointer type [-Wincompatible-pointer-types]
+  338 |     read_image_data(input_path, &data, &width, &height, &n);
+      |                                 ^~~~~
+      |                                 |
+      |                                 char **
+In file included from /home/runner/work/pgi-2025-the_light_achievers/pgi-2025-the_light_achievers/src/features.c:1:
+/home/runner/work/pgi-2025-the_light_achievers/lib/estia_image/include/estia-image.h:13:59: note: expected ‘unsigned char **’ but argument is of type ‘char **’
+   13 | int read_image_data(const char *filename, unsigned char **data, int *width, int *height, int *channel_count);
+      |                                           ~~~~~~~~~~~~~~~~^~~~
+/home/runner/work/pgi-2025-the_light_achievers/pgi-2025-the_light_achievers/src/features.c: In function ‘rotate_acw’:
+/home/runner/work/pgi-2025-the_light_achievers/pgi-2025-the_light_achievers/src/features.c:368:33: warning: passing argument 2 of ‘read_image_data’ from incompatible pointer type [-Wincompatible-pointer-types]
+  368 |     read_image_data(input_path, &data, &width, &height, &n);
+      |                                 ^~~~~
+      |                                 |
+      |                                 char **
+/home/runner/work/pgi-2025-the_light_achievers/lib/estia_image/include/estia-image.h:13:59: note: expected ‘unsigned char **’ but argument is of type ‘char **’
+   13 | int read_image_data(const char *filename, unsigned char **data, int *width, int *height, int *channel_count);
+      |                                           ~~~~~~~~~~~~~~~~^~~~
+/home/runner/work/pgi-2025-the_light_achievers/pgi-2025-the_light_achievers/src/features.c: In function ‘mirror_horizontal’:
+/home/runner/work/pgi-2025-the_light_achievers/pgi-2025-the_light_achievers/src/features.c:398:33: warning: passing argument 2 of ‘read_image_data’ from incompatible pointer type [-Wincompatible-pointer-types]
+  398 |     read_image_data(input_path, &data, &width, &height, &n);
+      |                                 ^~~~~
+      |                                 |
+      |                                 char **
+/home/runner/work/pgi-2025-the_light_achievers/lib/estia_image/include/estia-image.h:13:59: note: expected ‘unsigned char **’ but argument is of type ‘char **’
+   13 | int read_image_data(const char *filename, unsigned char **data, int *width, int *height, int *channel_count);
+      |                                           ~~~~~~~~~~~~~~~~^~~~
+/home/runner/work/pgi-2025-the_light_achievers/pgi-2025-the_light_achievers/src/features.c: In function ‘mirror_vertical’:
+/home/runner/work/pgi-2025-the_light_achievers/pgi-2025-the_light_achievers/src/features.c:423:33: warning: passing argument 2 of ‘read_image_data’ from incompatible pointer type [-Wincompatible-pointer-types]
+  423 |     read_image_data(input_path, &data, &width, &height, &n);
+      |                                 ^~~~~
+      |                                 |
+      |                                 char **
+/home/runner/work/pgi-2025-the_light_achievers/lib/estia_image/include/estia-image.h:13:59: note: expected ‘unsigned char **’ but argument is of type ‘char **’
+   13 | int read_image_data(const char *filename, unsigned char **data, int *width, int *height, int *channel_count);
+      |                                           ~~~~~~~~~~~~~~~~^~~~
