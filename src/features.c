@@ -498,3 +498,31 @@ void color_desaturate(char *input_path) {
     write_image_data("image_out.bmp", data, width, height);
     free_image_data(data);
 }
+
+void scale_crop(char *input_path, int pixel_x, int pixel_y, int new_width, int new_height){
+    char *data = NULL;
+    int width = 0, height = 0, n = 0;
+
+    read_image_data(input_path, &data, &width, &height, &n);
+
+    int size = new_width * new_height * n;
+    char *new_data = malloc(size);
+
+    int x0 = pixel_x - new_width / 2;
+    int y0 = pixel_y - new_height / 2;
+
+    for (int i = 0; i < new_width * new_height; i++) {
+        int x = i % new_width;
+        int y = i / new_width;
+
+        int src_idx = ((y0 + y) * width + (x0 + x)) * n;
+        int dst_idx = i * n;
+
+        for (int j = 0; j < n; j++) {
+            new_data[dst_idx + j] = data[src_idx + j];
+        }
+    }
+
+    write_image_data("image_out.bmp", new_data, new_width, new_height);
+    free_image_data(data);
+}

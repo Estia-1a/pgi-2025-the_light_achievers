@@ -24,4 +24,6 @@ void mirror_horizontal(char*);
 void mirror_vertical(char *);
 void mirror_total(char *);
 void color_desaturate(char *);
+void scale_crop(char *, int, int, int, int);
+
 #endif

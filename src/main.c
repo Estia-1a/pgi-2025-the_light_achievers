@@ -141,5 +141,14 @@ int main(int argc, char **argv) {
     color_desaturate(configuration.filenames[0]);
   }
 
+  else if ( strncmp( configuration.command, "scale_crop", 11 ) == 0 ) {
+    /* scale_crop() function is defined in feature.h and implemented in feature.c */
+    int pixel_x = atoi(configuration.arguments[0]);
+    int pixel_y = atoi(configuration.arguments[1]);
+    int new_width = atoi(configuration.arguments[2]);
+    int new_heigth = atoi(configuration.arguments[3]);
+    scale_crop(configuration.filenames[0], pixel_x, pixel_y, new_width, new_heigth);
+  }
+
   return 0;
 }
