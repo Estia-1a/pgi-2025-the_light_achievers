@@ -16,7 +16,7 @@ void color_green(char*);
 void color_blue(char*);
 void color_red(char*);
 void color_gray(char*);
-void invert_pixel(char*);
+void color_invert(char*);
 void color_gray_luminance(char*);
 void rotate_cw(char*);
 void rotate_acw(char*);

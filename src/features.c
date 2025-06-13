@@ -293,7 +293,7 @@ void color_gray(char *input_path) {
     free_image_data(data);    
 }
 
-void invert_pixel(char *input_path) {
+void color_invert(char *input_path) {
     unsigned char *data = NULL;
     int width = 0, height = 0, n = 0;
    

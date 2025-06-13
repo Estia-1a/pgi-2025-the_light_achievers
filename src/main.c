@@ -101,9 +101,9 @@ int main(int argc, char **argv) {
     color_gray(configuration.filenames[0]);
   }
 
-  else if ( strncmp( configuration.command, "invert_pixel", 11 ) == 0 ) {
-    /* invert_pixel() function is defined in feature.h and implemented in feature.c */
-    invert_pixel(configuration.filenames[0]);
+  else if ( strncmp( configuration.command, "color_invert", 11 ) == 0 ) {
+    /* color_invert() function is defined in feature.h and implemented in feature.c */
+    color_invert(configuration.filenames[0]);
   }
 
   else if ( strncmp( configuration.command, "color_gray_luminance", 11 ) == 0 ) {
