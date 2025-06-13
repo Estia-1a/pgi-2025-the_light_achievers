@@ -377,7 +377,7 @@ void rotate_acw(char *input_path) {
         for (int x = 0; x < width; x++) {
             int index = (y * width + x) * n;
             int rota_x = y;
-            int rota_y = height - 1 - x;
+            int rota_y = width - 1 - x;
             int rota_index = (rota_y * new_width + rota_x) * n;
 
             for (int i = 0; i < n; i++) {
