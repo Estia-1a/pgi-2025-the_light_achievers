@@ -150,5 +150,10 @@ int main(int argc, char **argv) {
     scale_crop(configuration.filenames[0], pixel_x, pixel_y, new_width, new_heigth);
   }
 
+else if ( strncmp( configuration.command, "scale_nearest", 11 ) == 0 ) {
+    /* scale_nearest() function is defined in feature.h and implemented in feature.c */
+    float x = atoi(configuration.arguments[0]);
+    scale_nearest(configuration.filenames[0], x);
+  }
   return 0;
 }
