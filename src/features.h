@@ -26,4 +26,6 @@ void mirror_total(char *);
 void color_desaturate(char *);
 void scale_crop(char *, int, int, int, int);
 void scale_nearest(char *, float);
+void scale_bilinear(char *, float);
+
 #endif

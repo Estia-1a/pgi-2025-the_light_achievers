@@ -557,3 +557,55 @@ void scale_nearest(char *source_path, float scale) {
     write_image_data("image_out.bmp", new_data, new_width, new_height);
     free_image_data(data);
 }
+
+void scale_bilinear(char *source_path, float scale) {
+    char *data = NULL;
+    int width = 0, height = 0, n = 0;
+
+    read_image_data(source_path, &data, &width, &height, &n);
+
+    int new_width = width * scale;
+    int new_height = height * scale;
+
+    char *new_data = malloc(new_width * new_height * n);
+
+    for (int y = 0; y < new_height; y++) {
+        for (int x = 0; x < new_width; x++) {
+            
+            float src_x = x / scale;
+            float src_y = y / scale;
+
+            
+            int x0 = (int)src_x;
+            int y0 = (int)src_y;
+
+            int x1 = x0 + 1;
+            if (x1 >= width) {
+                x1 = x0;
+            }
+            
+            int y1 = y0 + 1;
+            if (y1 >= height) {
+                y1 = y0;
+            }
+
+            float dx = src_x - x0;
+            float dy = src_y - y0;
+
+            for (int c = 0; c < n; c++) {
+                
+                char p00 = data[(y0 * width + x0) * n + c];
+                char p10 = data[(y0 * width + x1) * n + c];
+                char p01 = data[(y1 * width + x0) * n + c];
+                char p11 = data[(y1 * width + x1) * n + c];
+
+                float value = (1 - dx) * (1 - dy) * p00 + dx * (1 - dy) * p10 + (1 - dx) * dy * p01 + dx * dy * p11;
+
+                new_data[(y * new_width + x) * n + c] = (char)value;
+            }
+        }
+    }
+
+    write_image_data("image_out.bmp", new_data, new_width, new_height);
+    free_image_data(data);
+}

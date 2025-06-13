@@ -155,5 +155,12 @@ else if ( strncmp( configuration.command, "scale_nearest", 11 ) == 0 ) {
     float x = atof(configuration.arguments[0]);
     scale_nearest(configuration.filenames[0], x);
   }
+
+else if ( strncmp( configuration.command, "scale_bilinear", 11 ) == 0 ) {
+    /* scale_bilinear() function is defined in feature.h and implemented in feature.c */
+    float x = atof(configuration.arguments[0]);
+    scale_bilinear(configuration.filenames[0], x);
+  }
+  
   return 0;
 }
