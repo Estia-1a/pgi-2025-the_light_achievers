@@ -609,3 +609,84 @@ void scale_bilinear(char *source_path, float scale) {
     write_image_data("image_out.bmp", new_data, new_width, new_height);
     free_image_data(data);
 }
+
+void stat_report(char *source_path) {
+    unsigned char *data = NULL;
+    int width = 0, height = 0, n = 0;
+
+    if (read_image_data(source_path, &data, &width, &height, &n) == 0) {
+        printf("Error reading image\n");
+        return;
+    }
+
+    FILE *fp = fopen("stat_report.txt", "w");
+    if (fp == NULL) {
+        printf("Error opening file\n");
+        free_image_data(data);
+        return;
+    }
+
+    int max_sum = -1, max_x = 0, max_y = 0, max_r = 0, max_g = 0, max_b = 0;
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            pixelRGB *p = get_pixel(data, width, height, n, x, y);
+            int sum = p->R + p->G + p->B;
+            if (sum > max_sum) {
+                max_sum = sum;
+                max_x = x; max_y = y;
+                max_r = p->R; max_g = p->G; max_b = p->B;
+            }
+        }
+    }
+    fprintf(fp, "max_pixel (%d,%d): %d, %d, %d\n\n", max_x, max_y, max_r, max_g, max_b);
+
+    int min_sum = 256*3 + 1, min_x = 0, min_y = 0, min_r = 0, min_g = 0, min_b = 0;
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            pixelRGB *p = get_pixel(data, width, height, n, x, y);
+            int sum = p->R + p->G + p->B;
+            if (sum < min_sum) {
+                min_sum = sum;
+                min_x = x; min_y = y;
+                min_r = p->R; min_g = p->G; min_b = p->B;
+            }
+        }
+    }
+    fprintf(fp, "min_pixel (%d,%d): %d, %d, %d\n\n", min_x, min_y, min_r, min_g, min_b);
+
+    char components[] = {'R', 'G', 'B'};
+    for (int i = 0; i < 3; i++) {
+        char c = components[i];
+        int max_val = -1, x_pos = -1, y_pos = -1;
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                pixelRGB *p = get_pixel(data, width, height, n, x, y);
+                int val = (c == 'R') ? p->R : (c == 'G') ? p->G : p->B;
+                if (val > max_val) {
+                    max_val = val;
+                    x_pos = x; y_pos = y;
+                }
+            }
+        }
+        fprintf(fp, "max_component %c (%d,%d): %d\n\n", c, x_pos, y_pos, max_val);
+    }
+
+    for (int i = 0; i < 3; i++) {
+        char c = components[i];
+        int min_val = 256, x_pos = -1, y_pos = -1;
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                pixelRGB *p = get_pixel(data, width, height, n, x, y);
+                int val = (c == 'R') ? p->R : (c == 'G') ? p->G : p->B;
+                if (val < min_val) {
+                    min_val = val;
+                    x_pos = x; y_pos = y;
+                }
+            }
+        }
+        fprintf(fp, "min_component %c (%d,%d): %d\n\n", c, x_pos, y_pos, min_val);
+    }
+
+    fclose(fp);
+    free_image_data(data);
+}
