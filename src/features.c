@@ -614,11 +614,6 @@ void stat_report(char *source_path) {
     unsigned char *data = NULL;
     int width = 0, height = 0, n = 0;
 
-    if (read_image_data(source_path, &data, &width, &height, &n) == 0) {
-        printf("Error reading image\n");
-        return;
-    }
-
     FILE *fichier = fopen("stat_report.txt", "w");
     if (fichier == NULL) {
         printf("Error opening file\n");
