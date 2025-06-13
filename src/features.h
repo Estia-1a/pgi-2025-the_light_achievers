@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #ifndef FEATURES_H
 #define FEATURES_H
 
@@ -8,10 +10,10 @@ void first_pixel(char*);
 void tenth_pixel(char *);
 void second_line(char*);
 void print_pixel(char *, int, int);
-void max_pixel(char *);
-void min_pixel(char *);
-void max_component(char *, char);
-void min_component(char *, char);
+void max_pixel(char *, FILE*);
+void min_pixel(char *, FILE*);
+void max_component(char *, char, FILE*);
+void min_component(char *, char, FILE*);
 void color_green(char*);
 void color_blue(char*);
 void color_red(char*);

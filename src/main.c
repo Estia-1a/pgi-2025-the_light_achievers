@@ -61,24 +61,24 @@ int main(int argc, char **argv) {
    
   else if ( strncmp( configuration.command, "max_pixel", 11 ) == 0 ) {
     /* max_pixel() function is defined in feature.h and implemented in feature.c */
-    max_pixel(configuration.filenames[0]);
+    max_pixel(configuration.filenames[0], stdout);
   }
 
   else if ( strncmp( configuration.command, "max_component", 11) == 0 ) {
     /* max_component() function is defined in feature.h and implemented in feature.c */
     char component = configuration.arguments[0][0];
-    max_component(configuration.filenames[0], component);
+    max_component(configuration.filenames[0], component, stdout);
   }
 
   else if ( strncmp( configuration.command, "min_component", 11) == 0 ) {
     /* min_component() function is defined in feature.h and implemented in feature.c */
     char component = configuration.arguments[0][0];
-    min_component(configuration.filenames[0], component);
+    min_component(configuration.filenames[0], component, stdout);
   }
 
   else if ( strncmp( configuration.command, "min_pixel", 11 ) == 0 ) {
     /* min_pixel() function is defined in feature.h and implemented in feature.c */
-    min_pixel(configuration.filenames[0]);
+    min_pixel(configuration.filenames[0], stdout);
   }
 
   else if ( strncmp( configuration.command, "color_green", 11 ) == 0 ) {
